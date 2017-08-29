@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block title %}首页{% endblock %}
+
+{% block head %}
+    <link rel="stylesheet" href="{{ url_for('static',filename = 'css/index.css') }}">
+{% endblock %}
+
+
+
+{% block main %}
+    <ul class="article-list-group">
+        {% for article in articles %}
+            <li>
+                <div class="avatar-group">
+                    <img src="{{ url_for('static',filename = 'images/tunnel1.png') }}" alt="" class="avatar">
+                </div>
+                <div class="article-group">
+                    <p class="artcle-title"><a href="{{ url_for('detail',article_id = article.id) }}">{{ article.title }}</a></p>
+                    <p class="article-content">{{ article.content }}</p>
+                    <div class="article-info">
+                        <span class="article-author">{{ article.author.username }}</span>
+                        <span class="article-time">{{ article.create_time }}</span>
+                    </div>
+                </div>
+            </li>
+        {% endfor %}
+    </ul>
+{% endblock %}
+
