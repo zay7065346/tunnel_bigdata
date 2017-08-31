@@ -29,9 +29,10 @@ def login():
     else:
         telephone = request.form.get('telephone')
         password = request.form.get('password')
-        user = User.query.filter(User.telephone == telephone)
+        user = User.query.filter(User.telephone == telephone,User.password == password).first()
         if user:
             session['user_id'] = user.id
+            #30天不用登陆
             session.permanent = True
             return redirect(url_for('index'))
         else:
